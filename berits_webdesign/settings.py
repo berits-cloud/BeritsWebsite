@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -20,12 +21,24 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-lf_nklz_$-57%7z+nzi()1@3&!9-z7j-n3!y_yvhj!6i6inu5%"
+# In Produktion über die Umgebungsvariable SECRET_KEY setzen (z. B. in Vercel).
+SECRET_KEY = os.environ.get(
+    "SECRET_KEY",
+    "django-insecure-lf_nklz_$-57%7z+nzi()1@3&!9-z7j-n3!y_yvhj!6i6inu5%",
+)
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Standardmäßig aus; zum Debuggen DEBUG=1 als Umgebungsvariable setzen.
+DEBUG = os.environ.get("DEBUG", "False").lower() in ("1", "true", "yes")
 
 ALLOWED_HOSTS = ["*"]
+
+# Vercel-Domains (und eigene Domain via Umgebungsvariable) für CSRF erlauben,
+# damit z. B. das Kontaktformular auch mit DEBUG=False funktioniert.
+CSRF_TRUSTED_ORIGINS = ["https://*.vercel.app"]
+_extra_origins = os.environ.get("CSRF_TRUSTED_ORIGINS", "")
+if _extra_origins:
+    CSRF_TRUSTED_ORIGINS += [o.strip() for o in _extra_origins.split(",") if o.strip()]
 
 
 # Application definition
