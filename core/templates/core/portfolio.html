@@ -1,0 +1,62 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Portfolio — Berit Andres Webdesign{% endblock %}
+{% block body_class %}portfolio{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <div class="container">
+        <p class="kicker">Portfolio</p>
+        <h1 class="display-sm">Eine Auswahl meiner Arbeiten.</h1>
+        <p class="lead">
+            Jedes Projekt ist anders — und doch verbindet sie etwas: Ruhe, Klarheit und
+            das Gefühl, dass jede Entscheidung einen Grund hat.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="portfolio-grid portfolio-grid-large">
+            {% for p in projekte %}
+            {% if p.url %}
+            <a href="{{ p.url }}" class="project-tile" style="--tile: {{ p.farbe }};" target="_blank" rel="noopener">
+            {% else %}
+            <article class="project-tile" style="--tile: {{ p.farbe }};">
+            {% endif %}
+                <div class="tile-canvas">
+                    <div class="browser-frame">
+                        <div class="browser-bar">
+                            <span class="bb-dot"></span>
+                            <span class="bb-dot"></span>
+                            <span class="bb-dot"></span>
+                            {% if p.url %}<span class="bb-url">{{ p.url|cut:"https://"|cut:"http://" }}</span>{% endif %}
+                        </div>
+                        <div class="browser-screen">
+                            {% if p.bild %}
+                            <img src="{% static 'core/img/projekte/' %}{{ p.bild }}" alt="{{ p.titel }} — Screenshot">
+                            {% else %}
+                            <span class="browser-empty">Screenshot folgt</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="tile-meta">
+                    <p class="tile-title">{{ p.titel }}{% if p.url %} <span class="tile-ext">↗</span>{% endif %}</p>
+                    <p class="tile-sub">{{ p.kategorie }} · {{ p.jahr }}</p>
+                </div>
+            {% if p.url %}</a>{% else %}</article>{% endif %}
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<section class="section section-cta">
+    <div class="container cta-inner">
+        <h2 class="display-sm">Dein Projekt könnte hier stehen.</h2>
+        <p class="lead">Erzähl mir, was du vorhast — ich höre zu.</p>
+        <a href="{% url 'core:kontakt' %}" class="btn btn-primary">Projekt anfragen</a>
+    </div>
+</section>
+{% endblock %}

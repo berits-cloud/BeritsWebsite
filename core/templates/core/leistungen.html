@@ -1,0 +1,72 @@
+{% extends "core/base.html" %}
+
+{% block title %}Leistungen — Berit Andres Webdesign{% endblock %}
+{% block body_class %}leistungen{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <div class="container">
+        <p class="kicker">Leistungen</p>
+        <h1 class="display-sm">Webdesign — durchdacht, persönlich, ohne Schnickschnack.</h1>
+        <p class="lead">
+            Drei klare Pakete als Orientierung. Jedes Projekt entsteht aber individuell —
+            denn deine Marke ist es schließlich auch.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container leistungen-liste">
+        {% for l in leistungen %}
+        <article class="leistung-row">
+            <div class="leistung-meta">
+                <p class="kicker">{{ l.kicker }}</p>
+                <h2 class="serif-xl">{{ l.titel }}</h2>
+                <p class="card-price">{{ l.ab_preis }}</p>
+            </div>
+            <div class="leistung-body">
+                <p>{{ l.beschreibung }}</p>
+                <ul class="check-list">
+                    {% for u in l.umfang %}
+                    <li>{{ u }}</li>
+                    {% endfor %}
+                </ul>
+                <a href="{% url 'core:kontakt' %}" class="link-arrow">Für dieses Paket anfragen →</a>
+            </div>
+        </article>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="section section-process">
+    <div class="container">
+        <div class="section-head">
+            <p class="kicker">So arbeiten wir zusammen</p>
+            <h2 class="serif-xl">Der Ablauf — in vier ruhigen Schritten.</h2>
+        </div>
+
+        <div class="process-grid">
+            <div class="process-step">
+                <span class="step-num">01</span>
+                <h3>Kennenlernen</h3>
+                <p>Ein erstes Gespräch, in dem wir prüfen, ob es passt — fachlich und menschlich.</p>
+            </div>
+            <div class="process-step">
+                <span class="step-num">02</span>
+                <h3>Konzept</h3>
+                <p>Struktur, Inhalte, Tonalität: wir bauen das Fundament, bevor wir gestalten.</p>
+            </div>
+            <div class="process-step">
+                <span class="step-num">03</span>
+                <h3>Design & Umsetzung</h3>
+                <p>Du siehst frühe Entwürfe und entscheidest mit. Dann wird sauber programmiert.</p>
+            </div>
+            <div class="process-step">
+                <span class="step-num">04</span>
+                <h3>Launch & Pflege</h3>
+                <p>Wir gehen gemeinsam live — und ich bleibe für Pflege und Erweiterungen da.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,21 @@
+{% extends "core/base.html" %}
+
+{% block title %}Danke! — Berit Andres Webdesign{% endblock %}
+{% block body_class %}danke{% endblock %}
+
+{% block content %}
+<section class="section section-cta" style="min-height: 70vh;">
+    <div class="container cta-inner">
+        <p class="kicker">Angekommen</p>
+        <h1 class="display">Danke für deine Nachricht.</h1>
+        <p class="lead">
+            Ich habe deine Anfrage erhalten und melde mich innerhalb von 48&nbsp;Stunden bei dir.
+            Bis dahin — schau dich gern um.
+        </p>
+        <div class="hero-actions">
+            <a href="{% url 'core:portfolio' %}" class="btn btn-primary">Zum Portfolio</a>
+            <a href="{% url 'core:home' %}" class="btn btn-ghost">Zur Startseite →</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

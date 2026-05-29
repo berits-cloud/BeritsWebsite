@@ -1,0 +1,125 @@
+{% extends "core/base.html" %}
+{% load static %}
+
+{% block title %}Berit Andres — Webdesign mit Ruhe und Charakter{% endblock %}
+{% block body_class %}home{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-inner">
+        <p class="kicker">Webdesign · seit 2026</p>
+        <h1 class="display">
+            Websites, die <em>atmen</em>.<br>
+            Marken, die <em>bleiben</em>.
+        </h1>
+        <p class="lead">
+            Ich gestalte und entwickle Websites für kleine Unternehmen, Kreative und Selbst­ständige —
+            zeitlos, klar und mit viel Sorgfalt im Detail.
+        </p>
+        <div class="hero-actions">
+            <a href="{% url 'core:kontakt' %}" class="btn btn-primary">Projekt anfragen</a>
+            <a href="{% url 'core:portfolio' %}" class="btn btn-ghost">Arbeiten ansehen →</a>
+        </div>
+    </div>
+
+</section>
+
+<section class="section section-intro">
+    <div class="container two-col">
+        <div>
+            <p class="kicker">— Hallo</p>
+            <h2 class="serif-xl">Eine Website ist kein Produkt von der Stange.</h2>
+        </div>
+        <div>
+            <p>
+                Sie ist der erste Eindruck, der digitale Empfang, das stille Versprechen an deine Kund*innen.
+                Genau deshalb arbeite ich nicht mit Vorlagen, sondern mit Aufmerksamkeit: für deine Worte,
+                deine Kund*innen und das, was deine Arbeit besonders macht.
+            </p>
+            <p>
+                Das Ergebnis: eine Website, die sich nicht laut macht — aber bleibt.
+            </p>
+            <a href="{% url 'core:ueber' %}" class="link-arrow">Mehr über mich →</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-leistungen">
+    <div class="container">
+        <div class="section-head">
+            <p class="kicker">Leistungen</p>
+            <h2 class="serif-xl">Drei Wege, gemeinsam zu starten.</h2>
+        </div>
+
+        <div class="cards">
+            {% for l in leistungen %}
+            <article class="card">
+                <p class="card-kicker">{{ l.kicker }}</p>
+                <h3 class="card-title">{{ l.titel }}</h3>
+                <p>{{ l.beschreibung }}</p>
+                <p class="card-price">{{ l.ab_preis }}</p>
+            </article>
+            {% endfor %}
+        </div>
+
+        <div class="section-foot">
+            <a href="{% url 'core:leistungen' %}" class="link-arrow">Alle Leistungen ansehen →</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-portfolio">
+    <div class="container">
+        <div class="section-head">
+            <p class="kicker">Ausgewählte Arbeiten</p>
+            <h2 class="serif-xl">Projekte mit Charakter.</h2>
+        </div>
+
+        <div class="portfolio-grid">
+            {% for p in projekte %}
+            <a href="{% if p.url %}{{ p.url }}{% else %}{% url 'core:portfolio' %}{% endif %}"
+               class="project-tile"
+               style="--tile: {{ p.farbe }};"
+               {% if p.url %}target="_blank" rel="noopener"{% endif %}>
+                <div class="tile-canvas">
+                    <div class="browser-frame">
+                        <div class="browser-bar">
+                            <span class="bb-dot"></span>
+                            <span class="bb-dot"></span>
+                            <span class="bb-dot"></span>
+                            {% if p.url %}<span class="bb-url">{{ p.url|cut:"https://"|cut:"http://" }}</span>{% endif %}
+                        </div>
+                        <div class="browser-screen">
+                            {% if p.bild %}
+                            <img src="{% static 'core/img/projekte/' %}{{ p.bild }}" alt="{{ p.titel }} — Screenshot">
+                            {% else %}
+                            <span class="browser-empty">Screenshot folgt</span>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                <div class="tile-meta">
+                    <p class="tile-title">{{ p.titel }}{% if p.url %} <span class="tile-ext">↗</span>{% endif %}</p>
+                    <p class="tile-sub">{{ p.kategorie }} · {{ p.jahr }}</p>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+
+        <div class="section-foot">
+            <a href="{% url 'core:portfolio' %}" class="link-arrow">Zum Portfolio →</a>
+        </div>
+    </div>
+</section>
+
+<section class="section section-cta">
+    <div class="container cta-inner">
+        <h2 class="display-sm">Lass uns über dein Projekt sprechen.</h2>
+        <p class="lead">
+            Ein erstes, unverbindliches Gespräch ist kostenlos.
+            Erzähl mir von deinem Vorhaben — ich melde mich innerhalb von 48&nbsp;Stunden.
+        </p>
+        <a href="{% url 'core:kontakt' %}" class="btn btn-primary">Anfrage starten</a>
+    </div>
+</section>
+{% endblock %}

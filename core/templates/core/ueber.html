@@ -1,0 +1,55 @@
+{% extends "core/base.html" %}
+
+{% block title %}Über mich — Berit Andres Webdesign{% endblock %}
+{% block body_class %}ueber{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <div class="container">
+        <p class="kicker">Über mich</p>
+        <h1 class="display-sm">Hi, ich bin Berit.</h1>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container two-col two-col-portrait">
+        <div class="portrait-placeholder" aria-hidden="true">
+            <div class="portrait-canvas"></div>
+            <p class="portrait-caption">Portrait folgt — versprochen.</p>
+        </div>
+        <div>
+            <p class="lead">
+                Ich gestalte und entwickle Websites, weil ich daran glaube, dass das Internet
+                wieder ruhiger werden darf.
+            </p>
+            <p>
+                Mein Hintergrund liegt zwischen Wissenschaft und Gestaltung — ich liebe es, komplexe
+                Inhalte so zu ordnen, dass sie leicht und schön wirken. Bevor ich eine Zeile Code
+                schreibe, verstehe ich, was du eigentlich erzählen willst.
+            </p>
+            <p>
+                Ich arbeite gerne mit Menschen, die ihr Handwerk ernst nehmen: Kreative, kleine
+                Marken, ehrliche Unternehmen. Wenn dich Tempo statt Tiefe interessiert, bin ich
+                wahrscheinlich nicht die Richtige — und das ist okay.
+            </p>
+
+            <div class="values">
+                <div>
+                    <p class="kicker">Wertvoll</p>
+                    <h3>Klarheit vor Effekt</h3>
+                </div>
+                <div>
+                    <p class="kicker">Wertvoll</p>
+                    <h3>Inhalt vor Form</h3>
+                </div>
+                <div>
+                    <p class="kicker">Wertvoll</p>
+                    <h3>Beziehung vor Auftrag</h3>
+                </div>
+            </div>
+
+            <a href="{% url 'core:kontakt' %}" class="btn btn-primary">Lerne mich kennen</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

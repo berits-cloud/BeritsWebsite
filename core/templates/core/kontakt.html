@@ -1,0 +1,80 @@
+{% extends "core/base.html" %}
+
+{% block title %}Kontakt — Berit Andres Webdesign{% endblock %}
+{% block body_class %}kontakt{% endblock %}
+
+{% block content %}
+<section class="page-head">
+    <div class="container">
+        <p class="kicker">Kontakt</p>
+        <h1 class="display-sm">Lass uns reden.</h1>
+        <p class="lead">
+            Fülle das Formular aus oder schreib mir direkt an
+            <a href="mailto:b.andres@pharma-science-hub.com">b.andres@pharma-science-hub.com</a>.
+            Ich melde mich innerhalb von 48 Stunden.
+        </p>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container kontakt-wrap">
+        <form method="post" class="kontakt-form" novalidate>
+            {% csrf_token %}
+
+            {% if form.non_field_errors %}
+                <div class="form-error">{{ form.non_field_errors }}</div>
+            {% endif %}
+
+            <div class="form-row form-row-2">
+                <div class="field">
+                    <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                    {{ form.name }}
+                    {{ form.name.errors }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.email.id_for_label }}">{{ form.email.label }}</label>
+                    {{ form.email }}
+                    {{ form.email.errors }}
+                </div>
+            </div>
+
+            <div class="form-row form-row-2">
+                <div class="field">
+                    <label for="{{ form.projekt.id_for_label }}">{{ form.projekt.label }}</label>
+                    {{ form.projekt }}
+                    {{ form.projekt.errors }}
+                </div>
+                <div class="field">
+                    <label for="{{ form.budget.id_for_label }}">{{ form.budget.label }}</label>
+                    {{ form.budget }}
+                    {{ form.budget.errors }}
+                </div>
+            </div>
+
+            <div class="field">
+                <label for="{{ form.nachricht.id_for_label }}">{{ form.nachricht.label }}</label>
+                {{ form.nachricht }}
+                {{ form.nachricht.errors }}
+            </div>
+
+            {{ form.website }}
+
+            <button type="submit" class="btn btn-primary">Anfrage senden</button>
+        </form>
+
+        <aside class="kontakt-side">
+            <p class="kicker">Direkter Draht</p>
+            <p class="serif-m">
+                Manchmal ist eine E-Mail schneller — schreib mir gerne unter
+                <a href="mailto:b.andres@pharma-science-hub.com">b.andres@pharma-science-hub.com</a>.
+            </p>
+            <hr>
+            <p class="kicker">Antwortzeit</p>
+            <p>In der Regel innerhalb von 48 Stunden, Mo – Fr.</p>
+            <hr>
+            <p class="kicker">Standort</p>
+            <p>Deutschland — Zusammenarbeit deutschlandweit & remote.</p>
+        </aside>
+    </div>
+</section>
+{% endblock %}
