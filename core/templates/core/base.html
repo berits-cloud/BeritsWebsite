@@ -19,7 +19,7 @@
     <div class="container nav-wrap">
         <a href="{% url 'core:home' %}" class="brand">
             <span class="brand-mark">B&nbsp;·&nbsp;A</span>
-            <span class="brand-name">Berit Andres <em>Webdesign</em></span>
+            <span class="brand-name">Berit Andres</span>
         </a>
 
         <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menü öffnen">
@@ -44,7 +44,7 @@
 <footer class="site-footer">
     <div class="container footer-grid">
         <div>
-            <p class="footer-brand">Berit Andres <em>Webdesign</em></p>
+            <p class="footer-brand">Berit Andres</p>
             <p class="muted">Ruhiges, durchdachtes Webdesign — entwickelt mit Sinn für Typografie und Weißraum.</p>
         </div>
         <div>
@@ -59,7 +59,7 @@
         <div>
             <p class="footer-heading">Kontakt</p>
             <ul>
-                <li><a href="mailto:b.andres@pharma-science-hub.com">b.andres@pharma-science-hub.com</a></li>
+                <li><a href="{% url 'core:kontakt' %}">Kontaktformular</a></li>
                 <li><a href="{% url 'core:impressum' %}">Impressum</a></li>
                 <li><a href="{% url 'core:datenschutz' %}">Datenschutz</a></li>
             </ul>

@@ -610,6 +610,9 @@ em { font-style: italic; }
 .two-col-portrait {
     grid-template-columns: 1fr 1.3fr;
 }
+.two-col-portrait.portrait-right {
+    grid-template-columns: 1.3fr 1fr;
+}
 .portrait-placeholder {
     position: sticky;
     top: 110px;
