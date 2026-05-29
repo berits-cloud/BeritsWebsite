@@ -21,8 +21,8 @@
     --c-muted:   #6b675f;
     --c-line:    rgba(78, 88, 76, 0.18);
 
-    --serif: "Cormorant Garamond", "Times New Roman", serif;
-    --sans:  "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --serif: "Noto Serif Display", "Times New Roman", serif;
+    --sans:  "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 
     --container: 1240px;
     --pad-x: clamp(1.25rem, 4vw, 3rem);
@@ -89,9 +89,9 @@ em { font-style: italic; }
 
 .kicker {
     font-family: var(--sans);
-    font-size: 0.78rem;
+    font-size: 0.8rem;
     font-weight: 400;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--c-sage);
     margin: 0 0 1.1rem 0;
@@ -170,7 +170,7 @@ em { font-style: italic; }
     letter-spacing: 0.05em;
 }
 .brand-name {
-    font-size: 0.82rem;
+    font-size: 0.8rem;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--c-forest);
@@ -191,8 +191,8 @@ em { font-style: italic; }
     align-items: center;
 }
 .site-nav a {
-    font-size: 0.86rem;
-    letter-spacing: 0.16em;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--c-forest);
     position: relative;
@@ -260,11 +260,32 @@ em { font-style: italic; }
 .hero {
     padding: clamp(5rem, 13vw, 10rem) 0 0;
     background:
-        radial-gradient(ellipse at 80% 0%, rgba(206, 199, 181, 0.45), transparent 55%),
-        radial-gradient(ellipse at 0% 100%, rgba(183, 193, 178, 0.4), transparent 50%),
-        var(--c-cream);
+        radial-gradient(ellipse at 80% 0%, rgba(183, 193, 178, 0.18), transparent 55%),
+        radial-gradient(ellipse at 0% 100%, rgba(206, 199, 181, 0.14), transparent 50%),
+        linear-gradient(160deg, #2b332a 0%, #4e584c 55%, #3a4338 100%);
     position: relative;
     overflow: hidden;
+}
+
+/* Hero — helle Schrift auf dunklem Grund */
+.hero .display { color: var(--c-cream); }
+.hero .display em { color: var(--c-sand); }
+.hero .kicker { color: var(--c-sand); }
+.hero .lead { color: rgba(250, 249, 246, 0.78); }
+
+.hero .btn-primary {
+    background: var(--c-sand);
+    color: var(--c-burgundy);
+}
+.hero .btn-primary:hover { background: var(--c-cream); }
+.hero .btn-ghost {
+    color: var(--c-cream);
+    border-color: rgba(250, 249, 246, 0.45);
+}
+.hero .btn-ghost:hover {
+    background: rgba(250, 249, 246, 0.10);
+    border-color: var(--c-cream);
+    color: var(--c-cream);
 }
 
 .hero .display {
@@ -291,8 +312,8 @@ em { font-style: italic; }
     gap: 0.5rem;
     padding: 0.95rem 1.8rem;
     border-radius: 999px;
-    font-size: 0.86rem;
-    letter-spacing: 0.16em;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     font-weight: 400;
     transition: transform 0.25s var(--ease), background 0.25s var(--ease), color 0.25s var(--ease);
@@ -316,8 +337,8 @@ em { font-style: italic; }
 
 .link-arrow {
     display: inline-block;
-    font-size: 0.86rem;
-    letter-spacing: 0.16em;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--c-burgundy);
     border-bottom: 1px solid currentColor;
@@ -354,8 +375,8 @@ em { font-style: italic; }
     box-shadow: 0 18px 40px -28px rgba(62, 13, 23, 0.35);
 }
 .card-kicker {
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--c-sage);
     margin-bottom: 1rem;
@@ -556,8 +577,8 @@ em { font-style: italic; }
 }
 .project-tile:hover .tile-ext { transform: translate(2px, -2px); color: var(--c-burgundy); }
 .tile-sub {
-    font-size: 0.78rem;
-    letter-spacing: 0.16em;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--c-sage);
     margin: 0;
@@ -567,10 +588,17 @@ em { font-style: italic; }
 /* -------- CTA -------- */
 .section-cta {
     background:
-        radial-gradient(ellipse at 50% 0%, rgba(206, 199, 181, 0.35), transparent 55%),
-        var(--c-cream);
+        radial-gradient(ellipse at 50% 0%, rgba(122, 135, 117, 0.20), transparent 55%),
+        linear-gradient(160deg, #34202a 0%, #3e0d17 60%, #2d0810 100%);
     text-align: center;
 }
+.section-cta .display-sm { color: var(--c-cream); }
+.section-cta .lead { color: rgba(250, 249, 246, 0.78); }
+.section-cta .btn-primary {
+    background: var(--c-sand);
+    color: var(--c-burgundy);
+}
+.section-cta .btn-primary:hover { background: var(--c-cream); }
 .cta-inner {
     max-width: 720px;
     margin: 0 auto;
@@ -650,8 +678,8 @@ em { font-style: italic; }
 
 .field label {
     display: block;
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--c-sage);
     margin-bottom: 0.5rem;
@@ -747,8 +775,8 @@ em { font-style: italic; }
 .site-footer .muted { color: rgba(255,255,255,0.55); max-width: 36ch; }
 
 .footer-heading {
-    font-size: 0.78rem;
-    letter-spacing: 0.22em;
+    font-size: 0.8rem;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--c-sand);
     margin: 0 0 1rem;
