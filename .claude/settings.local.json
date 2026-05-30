@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(python3 manage.py shell -c ' *)",
+      "Read(//private/tmp/**)",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --window-size=1280,2400 --screenshot=/tmp/home_full.png --virtual-time-budget=3000 \"http://127.0.0.1:8731/\")",
+      "Bash(\"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome\" --headless --disable-gpu --hide-scrollbars --window-size=1280,860 --screenshot=/tmp/home_hero.png --virtual-time-budget=3000 \"http://127.0.0.1:8731/\")"
+    ]
+  }
+}

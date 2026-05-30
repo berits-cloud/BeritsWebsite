@@ -8,18 +8,17 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{% static 'core/css/styles.css' %}">
     {% block extra_head %}{% endblock %}
 </head>
 <body class="page-{% block body_class %}default{% endblock %}">
 
-<header class="site-header">
+<header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
         <a href="{% url 'core:home' %}" class="brand">
-            <span class="brand-mark">B&nbsp;·&nbsp;A</span>
-            <span class="brand-name">Berit Andres</span>
+            <span class="nav-logo">Berit <em>Andres</em></span>
         </a>
 
         <input type="checkbox" id="nav-toggle" class="nav-toggle" aria-label="Menü öffnen">
@@ -42,34 +41,29 @@
 </main>
 
 <footer class="site-footer">
-    <div class="container footer-grid">
-        <div>
-            <p class="footer-brand">Berit Andres</p>
-            <p class="muted">Ruhiges, durchdachtes Webdesign — entwickelt mit Sinn für Typografie und Weißraum.</p>
-        </div>
-        <div>
-            <p class="footer-heading">Navigation</p>
-            <ul>
-                <li><a href="{% url 'core:leistungen' %}">Leistungen</a></li>
-                <li><a href="{% url 'core:portfolio' %}">Portfolio</a></li>
-                <li><a href="{% url 'core:ueber' %}">Über mich</a></li>
-                <li><a href="{% url 'core:kontakt' %}">Kontakt</a></li>
-            </ul>
-        </div>
-        <div>
-            <p class="footer-heading">Kontakt</p>
-            <ul>
-                <li><a href="{% url 'core:kontakt' %}">Kontaktformular</a></li>
-                <li><a href="{% url 'core:impressum' %}">Impressum</a></li>
-                <li><a href="{% url 'core:datenschutz' %}">Datenschutz</a></li>
-            </ul>
-        </div>
-    </div>
-    <div class="container footer-bottom">
-        <small>© {% now "Y" %} Berit Andres</small>
-        <small>Mit Sorgfalt gestaltet in Deutschland.</small>
+    <div class="container footer-bar">
+        <small>© {% now "Y" %} Berit Andres Studio</small>
+        <nav class="footer-legal" aria-label="Rechtliches">
+            <a href="{% url 'core:impressum' %}">Impressum</a>
+            <a href="{% url 'core:datenschutz' %}">Datenschutz</a>
+        </nav>
+        <small>Gestaltet mit Liebe zum Detail</small>
     </div>
 </footer>
+
+<script>
+    // Header bekommt beim Scrollen einen festen Hintergrund (cremefarben + dunkle Schrift)
+    (function () {
+        var header = document.getElementById('siteHeader');
+        if (!header) return;
+        var onScroll = function () {
+            if (window.scrollY > 40) header.classList.add('scrolled');
+            else header.classList.remove('scrolled');
+        };
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+    })();
+</script>
 
 </body>
 </html>
