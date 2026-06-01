@@ -63,6 +63,36 @@
         onScroll();
         window.addEventListener('scroll', onScroll, { passive: true });
     })();
+
+    // Handy: Leistungs-Karten leuchten beim Scrollen nacheinander auf
+    (function () {
+        var cards = document.querySelectorAll('.cards .card');
+        if (!cards.length || !('IntersectionObserver' in window)) return;
+        var mq = window.matchMedia('(max-width: 900px)');
+        var observer = null;
+
+        function activate() {
+            if (observer) return;
+            observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                    if (entry.isIntersecting) entry.target.classList.add('is-active');
+                    else entry.target.classList.remove('is-active');
+                });
+            }, { rootMargin: '-45% 0px -45% 0px' }); // schmales Band in der Bildschirmmitte
+            cards.forEach(function (card) { observer.observe(card); });
+        }
+
+        function deactivate() {
+            if (!observer) return;
+            observer.disconnect();
+            observer = null;
+            cards.forEach(function (card) { card.classList.remove('is-active'); });
+        }
+
+        function sync() { mq.matches ? activate() : deactivate(); }
+        sync();
+        mq.addEventListener('change', sync);
+    })();
 </script>
 
 </body>

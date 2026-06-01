@@ -308,7 +308,7 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
     font-family: var(--serif);
     font-size: clamp(3rem, 9vw, 6rem);
     font-weight: 300;
-    color: var(--c-cream);
+    color: var(--c-sand);
     line-height: 1;
     margin: 0 0 0.5rem;
 }
@@ -319,7 +319,7 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
     font-size: clamp(0.72rem, 1.5vw, 0.85rem);
     letter-spacing: 0.25em;
     text-transform: uppercase;
-    color: var(--c-sage);
+    color: var(--c-sand);
     margin-top: 1.75rem;
 }
 .hero-actions {
@@ -552,6 +552,12 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
 .card:hover {
     background: #f0ede8;
 }
+/* Auf dem Handy: aktive Karte beim Scrollen bekommt die Hover-Farbe */
+@media (max-width: 900px) {
+    .card.is-active {
+        background: #f0ede8;
+    }
+}
 .service-num, .card-kicker {
     display: block;
     font-family: var(--serif);
@@ -741,6 +747,9 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(1rem, 2vw, 1.5rem);
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
 }
 .work-item {
     position: relative;
@@ -770,18 +779,16 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
     flex-direction: column;
     justify-content: flex-end;
     padding: clamp(1.25rem, 2.5vw, 1.75rem);
-    background: rgba(62, 13, 23, 0);
-    transition: background 0.4s var(--ease);
+    background: none;
 }
-.work-item:hover .work-overlay { background: rgba(62, 13, 23, 0.85); }
 .work-overlay h4 {
     margin: 0;
     font-family: var(--serif);
     font-weight: 300;
     font-size: 1.4rem;
     color: var(--c-cream);
-    opacity: 0;
-    transform: translateY(10px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.4s var(--ease), transform 0.4s var(--ease);
 }
 .work-overlay p {
@@ -791,13 +798,11 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
     text-transform: uppercase;
     font-weight: 300;
     color: var(--c-sand);
-    opacity: 0;
-    transform: translateY(10px);
+    opacity: 1;
+    transform: translateY(0);
     transition: opacity 0.4s var(--ease) 0.07s, transform 0.4s var(--ease) 0.07s;
 }
 .work-ext { font-family: var(--sans); font-size: 0.85rem; vertical-align: super; }
-.work-item:hover .work-overlay h4,
-.work-item:hover .work-overlay p { opacity: 1; transform: translateY(0); }
 
 @media (max-width: 700px) {
     .works-grid { grid-template-columns: 1fr; }
@@ -823,13 +828,13 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
 .contact-pattern { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0.05; pointer-events: none; }
 .contact-content, .cta-inner { position: relative; z-index: 2; max-width: 760px; margin: 0 auto; }
 .section-cta .display, .section-cta .display-sm,
-.section-contact h2 { color: var(--c-cream); }
+.section-contact h2 { color: var(--c-sand); }
 .section-contact h2 { font-family: var(--serif); font-weight: 300; font-size: clamp(2.5rem, 6vw, 5rem); line-height: 1; margin-bottom: 1rem; }
 .section-contact h2 em { font-style: italic; color: var(--c-sand); }
 .section-cta .lead { color: var(--c-sand); }
 .section-contact p { color: var(--c-sand); font-weight: 300; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 3rem; }
 .section-cta .lead { margin: 1rem auto 2rem; }
-.section-contact .section-label { color: var(--c-sage); justify-content: center; margin-bottom: 1rem; }
+.section-contact .section-label { color: var(--c-sand); justify-content: center; margin-bottom: 1rem; }
 .section-contact .section-label::after { display: none; }
 .section-cta .btn-primary, .section-contact .btn-primary { background: var(--c-sand); color: var(--c-burgundy); }
 .section-cta .btn-primary:hover, .section-contact .btn-primary:hover { background: var(--c-cream); }
@@ -838,7 +843,7 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
 .contact-email {
     font-family: var(--serif);
     font-size: clamp(1.2rem, 2.5vw, 1.8rem);
-    color: var(--c-cream);
+    color: var(--c-sand);
     border-bottom: 0.5px solid rgba(250, 249, 246, 0.3);
     padding-bottom: 4px;
     display: inline-block;
@@ -851,7 +856,7 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
     font-size: 0.7rem;
     letter-spacing: 0.2em;
     text-transform: uppercase;
-    color: var(--c-sage);
+    color: var(--c-sand);
     transition: color 0.3s var(--ease);
 }
 .social-links a:hover { color: var(--c-cream); }
