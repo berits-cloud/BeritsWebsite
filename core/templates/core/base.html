@@ -15,6 +15,53 @@
 </head>
 <body class="page-{% block body_class %}default{% endblock %}">
 
+<!-- Treibende Dala-Ornamente: rotieren & schweben sanft beim Scrollen -->
+<div class="dala-field" aria-hidden="true">
+    {% comment %}Eine Rosette als wiederverwendbares Motiv, dreimal in unterschiedlicher Größe/Lage.{% endcomment %}
+    <svg class="dala-orn dala-1" data-speed="1"    data-phase="0"   viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="50" cy="50" r="6.5"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(0 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(45 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(90 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(135 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(180 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(225 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(270 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(315 50 50)"/>
+        </g>
+        <circle cx="50" cy="50" r="2.2" fill="currentColor"/>
+    </svg>
+    <svg class="dala-orn dala-2" data-speed="-0.8" data-phase="2.1" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="50" cy="50" r="6.5"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(0 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(45 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(90 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(135 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(180 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(225 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(270 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(315 50 50)"/>
+        </g>
+        <circle cx="50" cy="50" r="2.2" fill="currentColor"/>
+    </svg>
+    <svg class="dala-orn dala-3" data-speed="1.4"  data-phase="4.2" viewBox="0 0 100 100">
+        <g fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="50" cy="50" r="6.5"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(0 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(45 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(90 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(135 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(180 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(225 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(270 50 50)"/>
+            <ellipse cx="50" cy="24" rx="5.5" ry="13" transform="rotate(315 50 50)"/>
+        </g>
+        <circle cx="50" cy="50" r="2.2" fill="currentColor"/>
+    </svg>
+</div>
+
 <header class="site-header" id="siteHeader">
     <div class="container nav-wrap">
         <a href="{% url 'core:home' %}" class="brand">
@@ -92,6 +139,53 @@
         function sync() { mq.matches ? activate() : deactivate(); }
         sync();
         mq.addEventListener('change', sync);
+    })();
+
+    // Fade-up: Elemente blenden sanft ein, sobald sie in den Viewport scrollen
+    (function () {
+        var els = document.querySelectorAll('.fade-up, .fade-up-stagger');
+        if (!els.length) return;
+
+        // Kein Observer / reduzierte Bewegung → einfach alles sofort zeigen
+        var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (!('IntersectionObserver' in window) || reduce) {
+            els.forEach(function (el) { el.classList.add('is-visible'); });
+            return;
+        }
+
+        var observer = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add('is-visible');
+                observer.unobserve(entry.target); // nur einmal einblenden
+            });
+        }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+
+        els.forEach(function (el) { observer.observe(el); });
+    })();
+
+    // Treibende Dala-Ornamente: drehen sich beim Scrollen und schweben sanft (Sinus)
+    (function () {
+        var orns = document.querySelectorAll('.dala-orn');
+        if (!orns.length) return;
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+        var ticking = false;
+        function render() {
+            var y = window.scrollY;
+            orns.forEach(function (o) {
+                var s = parseFloat(o.getAttribute('data-speed')) || 1;
+                var ph = parseFloat(o.getAttribute('data-phase')) || 0;
+                var rot = y * 0.04 * s;                       // langsame Drehung mit dem Scrollen
+                var bob = Math.sin(y * 0.0016 + ph) * 26;     // Auf- und Abschweben
+                var sway = Math.cos(y * 0.0013 + ph) * 16 * (s < 0 ? -1 : 1); // seitliches Wiegen
+                o.style.transform = 'translate(' + sway + 'px,' + bob + 'px) rotate(' + rot + 'deg)';
+            });
+            ticking = false;
+        }
+        function onScroll() { if (!ticking) { requestAnimationFrame(render); ticking = true; } }
+        render();
+        window.addEventListener('scroll', onScroll, { passive: true });
     })();
 </script>
 
