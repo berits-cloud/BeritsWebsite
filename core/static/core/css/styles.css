@@ -521,7 +521,7 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
     text-align: center;
     color: #fff;
 }
-.wallpaper-content .section-label { color: #fff; justify-content: center; }
+.wallpaper-content .section-label { color: rgba(255,255,255,0.55); justify-content: center; }
 .wallpaper-content .section-label::after { display: none; }
 .wallpaper-content h2 {
     font-family: var(--serif);
@@ -885,7 +885,7 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
 .section-cta .lead { color: #fff; }
 .section-contact p { color: #fff; font-weight: 400; font-size: 0.85rem; letter-spacing: 0.05em; margin-bottom: 3rem; }
 .section-cta .lead { margin: 1rem auto 2rem; }
-.section-contact .section-label { color: #fff; justify-content: center; margin-bottom: 1rem; }
+.section-contact .section-label { color: rgba(255,255,255,0.55); justify-content: center; margin-bottom: 1rem; }
 .section-contact .section-label::after { display: none; }
 .section-cta .btn-primary, .section-contact .btn-primary { background: var(--c-sand); color: var(--c-burgundy); }
 .section-cta .btn-primary:hover, .section-contact .btn-primary:hover { background: var(--c-cream); }
@@ -1018,33 +1018,6 @@ body:not(.page-home) .site-header .nav-burger span { background: var(--c-forest)
 }
 .footer-legal a:hover { color: var(--c-cream); }
 @media (max-width: 560px) { .footer-bar { justify-content: center; text-align: center; } }
-
-/* -------- Treibende Dala-Ornamente (schwedischer Scroll-Akzent) -------- */
-.dala-field {
-    position: fixed;
-    inset: 0;
-    z-index: 1;            /* unter dem Header (100), über den Sektions-Hintergründen */
-    pointer-events: none;  /* blockiert keine Klicks */
-    overflow: hidden;
-}
-.dala-orn {
-    position: absolute;
-    display: block;
-    will-change: transform;
-    transition: opacity 0.4s var(--ease);
-}
-.dala-1 { width: 220px; top: 14%; right: -45px; color: var(--c-sand); opacity: 0.13; }
-.dala-2 { width: 150px; top: 52%; left: -35px;  color: var(--c-sage); opacity: 0.11; }
-.dala-3 { width: 290px; top: 82%; right: 6%;    color: var(--c-sand); opacity: 0.08; }
-
-@media (max-width: 700px) {
-    .dala-1 { width: 130px; }
-    .dala-2 { width: 100px; }
-    .dala-3 { width: 160px; }
-}
-@media (prefers-reduced-motion: reduce) {
-    .dala-orn { transform: none !important; }
-}
 
 /* -------- Fade-up: sanftes Einblenden beim Scrollen -------- */
 .fade-up {

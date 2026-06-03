@@ -125,7 +125,7 @@
             {% for p in projekte %}
             <a href="{% if p.url %}{{ p.url }}{% else %}{% url 'core:portfolio' %}{% endif %}"
                class="work-item{% if forloop.first %} tall{% endif %}"
-               style="background: {% cycle '#4e584c' '#7a8775' '#6b5a45' %};"
+               style="background: {% cycle '#4e584c' '#7a8775' '#616f59' %};"
                {% if p.url %}target="_blank" rel="noopener"{% endif %}>
                 {% if p.bild %}
                 <img class="work-img" src="{% static 'core/img/projekte/' %}{{ p.bild }}" alt="{{ p.titel }} — Screenshot">
